@@ -1,0 +1,39 @@
+<div class="container">
+    <h1  md-colors="{color:'primary'}">Game of life</h1>
+    <h4  md-colors="{color:'primary'}">by Clément Pickel</h4>
+
+    <form [formGroup]="form" class="container">
+        <mat-form-field>
+            <mat-label>Width</mat-label>
+            <input matInput formControlName="width">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Height</mat-label>
+            <input matInput formControlName="height">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Time between gen (s)</mat-label>
+            <input matInput formControlName="time">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Size (px)</mat-label>
+            <input matInput formControlName="size">
+        </mat-form-field>
+    </form>
+
+    <div class="button-row">
+        <button mat-fab extended color="primary" (click)="gol.previousGeneration()">
+            <mat-icon>skip_previous</mat-icon>
+            Previous
+        </button>
+        <button mat-fab extended color="primary" (click)="toggleLoop()">
+            <mat-icon *ngIf="!isLooping">repeat</mat-icon>
+            <mat-icon *ngIf="isLooping">pause</mat-icon>
+            Loop
+        </button>
+        <button mat-fab extended color="primary" (click)="gol.nextGeneration()">
+            <mat-icon>skip_next</mat-icon>
+            Next
+        </button>
+    </div>
+</div>
