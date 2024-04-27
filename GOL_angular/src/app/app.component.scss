@@ -24,7 +24,7 @@
     height: 100%;
     display: flex;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     background-color: white;
 }
 
@@ -36,6 +36,14 @@
 .col {
     display: flex;
 }
+
+.overlapping-text {
+    position: absolute;
+    bottom: 0; /* Position the text at the bottom */
+    left: 0; /* Position the text at the left */
+    color: rgba(255, 255, 255, 0.5);
+    padding: 10px; /* Add padding for better visibility */
+  }
 
 app-case {
     padding: 2px;

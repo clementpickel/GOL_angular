@@ -5,16 +5,19 @@ import Cell from '../class/cell';
   providedIn: 'root'
 })
 export class GolService {
-  width = 30
-  height = 20
+  width = 80
+  height = 50
   widthArray: number[] = []
   heightArray: number[] = []
   offsetWidth = 0
   offsetHeight = 0
 
+  caseSize = 10
+
   private generation = 0
   private cells: Cell[] = [new Cell(3, 3), new Cell(4, 4), new Cell(5, 4), new Cell(5, 3), new Cell(5, 2),]
   private cellHistory: Cell[][] = []
+  private originalCells: Cell[] = []
 
   constructor() {
     this.widthArray = this.createArray(this.width, this.offsetWidth)
@@ -40,6 +43,10 @@ export class GolService {
   }
 
   nextGeneration() {
+    if (this.generation == 0) {
+      this.originalCells = this.cells
+    }
+
     this.generation += 1
     let count = 0
     const nextCells: Cell[] = []
@@ -62,8 +69,13 @@ export class GolService {
         }
       }
     }
+
     this.cellHistory.push(this.cells)
     this.cells = nextCells
+
+    if (this.cellHistory.length > 500) {
+      this.cellHistory.splice(0, 1);
+    }
   }
 
   previousGeneration() {
@@ -104,6 +116,13 @@ export class GolService {
   minusOffsetHeight() {
     this.offsetHeight++
     this.heightArray = this.createArray(this.height, this.offsetHeight)
+  }
+
+  reset() {
+    this.generation = 0
+    this.cellHistory = []
+    this.cells = this.originalCells
+    this.originalCells = []
   }
 
   private createArray(length: number, offsett: number): Array<number> {
