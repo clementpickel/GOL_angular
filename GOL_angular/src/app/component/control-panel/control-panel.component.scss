@@ -1,10 +1,43 @@
 .button-row {
-    gap: 10px;
+  gap: 10px;
+}
+
+.rotate-left {
+  transform: rotate(-45deg);
+  transform-origin: center;
+}
+
+.rotate-right {
+  transform: rotate(45deg);
+  transform-origin: center;
+}
+
+.offset-button {
+  margin-top: 40px;
 }
 
 .container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Jersey+15&family=Micro+5+Charted&display=swap");
+
+.text {
+  font-family: "Micro 5 Charted", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  color: rgb(150, 40, 75);
+}
+
+.title {
+  font-size: 100px;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  font-size: 50px;
+  margin-top: 0;
 }

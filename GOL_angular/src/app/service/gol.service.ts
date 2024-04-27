@@ -5,18 +5,20 @@ import Cell from '../class/cell';
   providedIn: 'root'
 })
 export class GolService {
-  width = 10
-  height = 10
+  width = 30
+  height = 20
   widthArray: number[] = []
   heightArray: number[] = []
+  offsetWidth = 0
+  offsetHeight = 0
 
   private generation = 0
   private cells: Cell[] = [new Cell(3, 3), new Cell(4, 4), new Cell(5, 4), new Cell(5, 3), new Cell(5, 2),]
   private cellHistory: Cell[][] = []
 
   constructor() {
-    this.widthArray = this.createArray(10)
-    this.heightArray = this.createArray(10)
+    this.widthArray = this.createArray(this.width, this.offsetWidth)
+    this.heightArray = this.createArray(this.height, this.offsetHeight)
   }
 
   getGen(): number {
@@ -74,17 +76,40 @@ export class GolService {
 
   setWidth(w: number) {
     this.width = w
-    this.widthArray = this.createArray(w)
+    this.widthArray = this.createArray(w, this.offsetWidth)
   }
 
   setHeight(h: number) {
     this.height = h
-    this.heightArray = this.createArray(h)
+    this.heightArray = this.createArray(h, this.offsetWidth)
   }
 
-  private createArray(length: number): Array<number> {
+  addOffsetWidth() {
+    this.offsetWidth++
+    this.widthArray = this.createArray(this.width, this.offsetWidth)
+    console.log(this.offsetWidth)
+    console.log(this.widthArray)
+  }
+
+  minusOffsetWidth() {
+    this.offsetWidth--
+    this.widthArray = this.createArray(this.width, this.offsetWidth)
+  }
+
+  addOffsetHeight() {
+    this.offsetHeight--
+    this.heightArray = this.createArray(this.height, this.offsetHeight)
+  }
+
+  minusOffsetHeight() {
+    this.offsetHeight++
+    this.heightArray = this.createArray(this.height, this.offsetHeight)
+  }
+
+  private createArray(length: number, offsett: number): Array<number> {
     const res: number[] = []
-    for (let i = 0; i < length; i++) {
+
+    for (let i = offsett; i < Number(length + offsett); i++) {
       res.push(i)
     }
     return res

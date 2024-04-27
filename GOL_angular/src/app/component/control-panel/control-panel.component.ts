@@ -25,8 +25,8 @@ import { CommonModule } from '@angular/common';
 export class ControlPanelComponent {
 
   form: FormGroup = new FormGroup({
-    width: new FormControl(10, [Validators.required, Validators.min(1)]),
-    height: new FormControl(10, [Validators.required, Validators.min(1)]),
+    width: new FormControl(this.gol.width, [Validators.required, Validators.min(1)]),
+    height: new FormControl(this.gol.height, [Validators.required, Validators.min(1)]),
     time: new FormControl(0.2, [Validators.required, Validators.min(0.01)]),
     size: new FormControl(30, [Validators.required, Validators.min(1)])
   })
@@ -59,13 +59,13 @@ export class ControlPanelComponent {
   constructor(public gol: GolService) {
     this.form.get("width")?.statusChanges.subscribe( status => {
       if (status == "VALID") {
-        gol.setWidth(this.form.get("width")!.value)
+        gol.setWidth(Number(this.form.get("width")!.value))
       }
     })
 
     this.form.get("height")?.statusChanges.subscribe( status => {
       if (status == "VALID") {
-        gol.setHeight(this.form.get("height")!.value)
+        gol.setHeight(Number(this.form.get("height")!.value))
       }
     })
   }
